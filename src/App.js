@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataStore } from "./DataStore";
+import MainPage from "./pages/MainPage";
 
 function App() {
 
@@ -11,20 +12,16 @@ function App() {
     `https://tlv-events-app.herokuapp.com/events/uk/london`
   ).then((data) => data.json());
   setEvents(result);}
+
+
+  useEffect(() => {
+    getEvents();
+  }, []);
   return (
-    <DataStore.Provider>
+    <DataStore.Provider value={{events, setEvents}} >
       <div>
         <h1>Events</h1>
-        <button onClick={getEvents}>Get Events</button>
-        <ul>
-          {events?.map((event) => (
-            <li key={event.id}>
-              <a href={event.venue.direction}>
-              {`${event.venue.name} - ${event.artists[0]?.name}`}
-              </a>
-              </li>
-          ))}
-        </ul>
+        <MainPage/>
       </div>
     </DataStore.Provider>
   );
