@@ -6,7 +6,7 @@ import { DataStore } from "../DataStore";
 function MainPage() {
   const { events, setEvents } = useContext(DataStore);
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap justify-content-center align-items-center">
       
         {events?.map((event) => {
           return(
