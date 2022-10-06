@@ -1,20 +1,31 @@
 import React from "react";
 import { useContext } from "react";
+import Card from "../components/Card";
 import { DataStore } from "../DataStore";
 
 function MainPage() {
   const { events, setEvents } = useContext(DataStore);
   return (
-    <div>
-      <ul>
-        {events?.map((event) => (
-          <li key={event.id}>
-            <a href={event.venue.direction}>
-              {`${event.venue.name} - ${event.artists[0]?.name}`}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div className="d-flex flex-wrap">
+      
+        {events?.map((event) => {
+          return(
+            <div>
+
+                <Card  
+                key={event._id}
+                eventImg={event?.flyerFront}
+                title={event.title}
+                location={event.venue.direction}
+                locationName={event.venue.name}
+                startTime={event.startTime}
+                endTime={event.endTime}/>
+            </div>
+
+          )}
+            
+           
+        )}
     </div>
   );
 }
