@@ -16,7 +16,7 @@ function Card({key, title, eventImg, location, locationName, startTime, endTime 
             
           <img  src={profileFoto} className="rounded-circle" alt="user" style={{height:"48px", width:"48px"}} />
           <p className="ps-2 pb-2 pe-2 mb-0 w-100 align-self-center text-truncate fw-bold" style={{height:"37px"}}>{title}</p>
-          <div class="overflow-auto img_description">{title}</div>
+          <div class="overflow-auto img_description fw-bold">{title}</div>
          
         </div>
       <img src={eventImg || defaultEventImg } className="img-fluid" style={{ height: "17rem", width:"100%" }} alt="eventImage" />

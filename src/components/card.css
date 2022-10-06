@@ -12,11 +12,9 @@
   bottom: 0px;
   left: 60px;
   right: 0;
-  color: rgb(30, 0, 255);
-  text-shadow: -1px 0 0 rgb(196, 2, 250);
+  color: rgb(63, 77, 78);
   visibility: hidden;
   opacity: 0;
-  z-index: 2;
 
   /* transition effect. not necessary */
   transition: opacity 0.2s, visibility 0.2s;
