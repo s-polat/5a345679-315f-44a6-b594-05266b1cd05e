@@ -1,0 +1,14 @@
+.cart {
+  position: relative;
+  padding-right: 10px;
+}
+.cart .eventicon {
+  font-size: 1.5rem;
+  color: rgba(158, 2, 255, 0.5882352941);
+}
+.cart .bdg {
+  font-size: 9px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+}/*# sourceMappingURL=navbar.css.map */

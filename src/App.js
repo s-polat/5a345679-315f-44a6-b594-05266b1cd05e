@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 function App() {
 
   const [ events, setEvents ] = useState([]);
+  const [ selectedEvent, setSelectedEvent ] = useState([]);
 
 
   const getEvents = async () => {
@@ -18,9 +19,9 @@ function App() {
     getEvents();
   }, []);
   return (
-    <DataStore.Provider value={{events, setEvents}} >
+    <DataStore.Provider value={{events, setEvents, selectedEvent, setSelectedEvent}} >
       <div>
-        <h1>Events</h1>
+        
         <MainPage/>
       </div>
     </DataStore.Provider>
