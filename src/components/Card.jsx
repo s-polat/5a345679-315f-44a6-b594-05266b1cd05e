@@ -1,5 +1,5 @@
 import React from "react";
-import './card.css';
+import '../styles/cardStyle/card.css';
 import defaultEventImg from "./../assets/images/default_event_img.jpg";
 import profileFoto from "./../assets/images/profile_foto.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,10 +28,10 @@ function Card({key, title, eventImg, location, locationName, startTime, endTime 
             </a>
         </div>
         <p >
-          {`Starts: ${ pureStartDate +"," || ""} ${pureStartTime || "Not specified"}`}
+          {`Starts: ${ pureStartDate ? pureStartDate : ""} ${pureStartTime || "Not specified"}`}
         </p>
         <p >
-          {`Ends: ${ pureEndDate +"," || ""}  ${pureEndTime || "Not specified"}`}
+          {`Ends: ${ pureEndDate ? pureEndDate : ""}  ${pureEndTime || "Not specified"}`}
         </p>
         <div className="d-flex justify-content-end">
         <button type="button" className="btn btn-primary rounded-circle">+</button>
