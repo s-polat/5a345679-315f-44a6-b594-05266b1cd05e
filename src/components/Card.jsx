@@ -5,7 +5,7 @@ import profileFoto from "./../assets/images/profile_foto.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
-function Card({id, title, eventImg, location, locationName, startTime, endTime, onClick } ) {
+function Card({id, title, eventImg, location, locationName, startTime, endTime, onClick, buttonSymbol} ) {
   const pureStartDate = startTime?.split("T")[0];
   const pureStartTime = startTime?.split("T")[1].split(".")[0];
   const pureEndDate = endTime?.split("T")[0];
@@ -34,7 +34,7 @@ function Card({id, title, eventImg, location, locationName, startTime, endTime, 
           {`Ends: ${ pureEndDate ? pureEndDate : ""}  ${pureEndTime || "Not specified"}`}
         </p>
         <div className="d-flex justify-content-end">
-        <button type="button" onClick={onClick} className="btn btn-primary rounded-circle">+</button>
+        <button type="button" onClick={onClick} className="btn btn-primary rounded-circle">{buttonSymbol}</button>
         </div>
        
       </div>

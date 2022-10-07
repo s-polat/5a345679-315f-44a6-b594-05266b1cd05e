@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import { DataStore } from "./DataStore";
 import MainPage from "./pages/MainPage";
+import MyEventsPage from "./pages/MyEventsPage";
 
 function App() {
 
@@ -21,8 +24,11 @@ function App() {
   return (
     <DataStore.Provider value={{events, setEvents, selectedEvent, setSelectedEvent}} >
       <div>
-        
-        <MainPage/>
+        <Navbar/>
+        <Routes>
+          <Route path="/" exact element={<MainPage/>} />
+          <Route path="/events" exact element={<MyEventsPage/>} />
+        </Routes>
       </div>
     </DataStore.Provider>
   );

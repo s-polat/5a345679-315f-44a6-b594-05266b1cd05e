@@ -15,9 +15,9 @@ function Navbar() {
     <div>
       <nav class="navbar navbar-expand bg-light">
         <div class="container">
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" to="/" preventScrollReset={true}>
             My Events
-          </a>
+          </Link>
 
           <form class="d-flex" role="search">
             <input
@@ -31,7 +31,7 @@ function Navbar() {
             </button>
           </form>
 
-          <a className="nav-link cart" href="#">
+          <Link className="nav-link cart" to="/events" preventScrollReset={true}>
                 <FontAwesomeIcon className="eventicon" icon={ faCalendarDays} />
             <span>
               {selectedEvent.length > 0 ? (
@@ -40,7 +40,7 @@ function Navbar() {
                 </span>
               ) : null}
             </span>
-          </a>
+          </Link>
         </div>
       </nav>
     </div>
