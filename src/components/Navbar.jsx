@@ -8,13 +8,14 @@ import {  faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 
 function Navbar() {
-  const { selectedEvent, searchState, setSearchState, setNewSearchState } = useContext(DataStore);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const { selectedEvent, searchState, setSearchState, } = useContext(DataStore);
   const navigate = useNavigate();
   const submitHandle = (e) => {
     console.log('searchState',searchState)
     e.preventDefault();
-    setNewSearchState(searchState)
-    setSearchState("")
+    setSearchState(currentSearch)
+    setCurrentSearch("")
     navigate('/search')
     } 
 
@@ -30,10 +31,10 @@ function Navbar() {
           <form className="d-flex"  onSubmit={submitHandle} >
             <input
               className="form-control me-2 rounded-pill border-0 shadow-sm px-4"
-              value={searchState}
+              value={currentSearch}
               placeholder="Search"
               aria-label="Search"
-              onChange={(e) =>{ setSearchState(e.target.value) }}
+              onChange={(e) =>{ setCurrentSearch(e.target.value) }}
             />
             
             <button className="btn btn-outline-success rounded-pill" type="submit">

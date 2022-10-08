@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function Card({id, title, eventImg, location, locationName, startTime, endTime, onClick, buttonSymbol} ) {
-  const pureStartDate = startTime?.split("T")[0];
+  const pureStartDate = (startTime?.split("T")[0])?.split("-").reverse().join(".");
   const pureStartTime = startTime?.split("T")[1].split(".")[0];
-  const pureEndDate = endTime?.split("T")[0];
+  const pureEndDate = (endTime?.split("T")[0])?.split("-").reverse().join(".");
   const pureEndTime = endTime?.split("T")[1].split(".")[0];
   return (
     <div key={id}  className="card m-3 shadow d-flex align-items-center" style={{"width": "18rem"}}>
