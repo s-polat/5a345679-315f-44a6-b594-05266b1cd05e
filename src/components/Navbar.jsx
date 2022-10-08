@@ -1,34 +1,45 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { DataStore } from "../DataStore";
 import '../styles/navbarStyle/navbar.css'
-import { faLight, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import {  faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 
 function Navbar() {
-  const { events, setEvents, selectedEvent, setSelectedEvent } =
-    useContext(DataStore);
+  const { selectedEvent, searchState, setSearchState, setNewSearchState } = useContext(DataStore);
+  const navigate = useNavigate();
+  const submitHandle = (e) => {
+    console.log('searchState',searchState)
+    e.preventDefault();
+    setNewSearchState(searchState)
+    setSearchState("")
+    navigate('/search')
+    } 
+
 
   return (
     <div>
-      <nav class="navbar navbar-expand bg-light">
-        <div class="container">
-          <Link class="navbar-brand" to="/" preventScrollReset={true}>
+      <nav className="navbar navbar-expand bg-light">
+        <div className="container">
+          <Link className="navbar-brand" to="/" preventScrollReset={true}>
             My Events
           </Link>
 
-          <form class="d-flex" role="search">
+          <form className="d-flex"  onSubmit={submitHandle} >
             <input
-              class="form-control me-2 rounded-pill border-0 shadow-sm px-4"
-              type="search"
+              className="form-control me-2 rounded-pill border-0 shadow-sm px-4"
+              value={searchState}
               placeholder="Search"
               aria-label="Search"
+              onChange={(e) =>{ setSearchState(e.target.value) }}
             />
-            <button class="btn btn-outline-success rounded-pill" type="submit">
+            
+            <button className="btn btn-outline-success rounded-pill" type="submit">
               Search
             </button>
+            
           </form>
 
           <Link className="nav-link cart" to="/events" preventScrollReset={true}>

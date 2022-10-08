@@ -22,8 +22,9 @@ function MainPage() {
       <div className="d-flex flex-wrap justify-content-center align-items-center">
         {events?.map((event) => {
           return (
-            <div>
+            <div key={event._id}>
               <Card
+                
                 id={event._id}
                 eventImg={event?.flyerFront}
                 title={event.title}
