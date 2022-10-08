@@ -1,3 +1,14 @@
+.card-style {
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  transition: box-shadow 0.3s ease-out;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+.card-style:hover {
+  box-shadow: 3px 3px 30px rgba(92, 81, 125, 0.524);
+}
+
 .img_wrap {
   position: relative;
 }
@@ -28,4 +39,9 @@
   opacity: 1;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
+}
+
+.card-btn {
+  background-color: rgba(158, 2, 255, 0.5882352941);
+  border: 1px solid rgba(199, 117, 250, 0.5882352941);
 }/*# sourceMappingURL=card.css.map */

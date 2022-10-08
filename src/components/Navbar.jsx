@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DataStore } from "../DataStore";
 import '../styles/navbarStyle/navbar.css'
-import {  faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import {  faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 
 function Navbar() {
@@ -25,7 +25,7 @@ function Navbar() {
       <nav className="navbar navbar-expand bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/" preventScrollReset={true}>
-            My Events
+           <FontAwesomeIcon className="home" icon={ faHouse }  />   
           </Link>
 
           <form className="d-flex"  onSubmit={submitHandle} >
