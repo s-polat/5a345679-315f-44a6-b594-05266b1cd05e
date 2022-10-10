@@ -11,7 +11,9 @@
 
 ## General Info
 
-This is a DCI end of chapter project and a teamwork with Github.
+This is an Event App. You can find lots of Events from London and Berlin. 
+When you run this app in your local, should you clone (git.clone).
+Then you should first type "npm install" and then "npm start".
 
 ## Preview
 
