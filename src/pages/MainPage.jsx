@@ -19,7 +19,7 @@ function MainPage() {
   };
   return (
     <div className="container">
-      <div className="d-flex flex-wrap justify-content-center align-items-center">
+      <div className="d-flex flex-wrap justify-content-center align-items-center" style={{marginTop:"120px"}}>
         {events?.map((event) => {
           return (
             <div key={event._id}>

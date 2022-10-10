@@ -1,17 +1,55 @@
-.home {
-  font-size: 1.5rem;
+body {
+  position: relative;
+}
+
+.fixed {
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.date-fixed {
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  top: 60px;
+  z-index: 1;
+  width: 100%;
+  padding-bottom: 10px;
+  box-shadow: 0px 18px 22px -21px gray;
+}
+
+.home-icon {
+  font-size: 2rem;
   color: rgba(158, 2, 255, 0.5882352941);
+}
+
+.src-btn {
+  color: rgba(158, 2, 255, 0.5882352941);
+  border: 1px solid rgba(199, 117, 250, 0.5882352941);
+  background-color: white;
+  padding: 5px 20px;
+  transition: 0.15s ease-in-out;
+}
+.src-btn:hover {
+  color: white;
+  background-color: #0b5ed7;
+  border: 1px solid #0b5ed7;
 }
 
 .cart {
   position: relative;
 }
-.cart .eventicon {
-  font-size: 1.5rem;
+.cart .event-icon {
+  margin-left: 12px;
+  font-size: 2rem;
   color: rgba(158, 2, 255, 0.5882352941);
 }
 .cart .bdg {
-  font-size: 9px;
+  font-size: 12px;
   position: absolute;
   top: -5px;
   right: -9px;

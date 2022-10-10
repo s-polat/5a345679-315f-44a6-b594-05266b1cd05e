@@ -1,6 +1,7 @@
 .card-style {
   border-radius: 14px;
   border: none;
+  margin-top: 100px;
   background: linear-gradient(145deg, #cacaca, #f0f0f0);
   transition: box-shadow 0.3s ease-out;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;

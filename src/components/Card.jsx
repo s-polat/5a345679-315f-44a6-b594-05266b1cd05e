@@ -11,7 +11,7 @@ function Card({id, title, eventImg, location, locationName, startTime, endTime, 
   const pureEndDate = (endTime?.split("T")[0])?.split("-").reverse().join(".");
   const pureEndTime = endTime?.split("T")[1].split(".")[0];
   return (
-    <div key={id}  className="card m-3 d-flex align-items-center card-style" style={{"width": "18rem"}}>
+    <div key={id}  className="card m-3 d-flex align-items-center card-style" style={{"width": "18rem" }}>
         <div className="d-flex ps-2 pt-2 w-100 img_wrap" style={{ height: "4rem"}}>
             
           <img  src={profileFoto} className="rounded-circle" alt="user" style={{height:"48px", width:"48px"}} />

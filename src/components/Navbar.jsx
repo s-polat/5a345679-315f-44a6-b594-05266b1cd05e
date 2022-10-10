@@ -3,51 +3,58 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DataStore } from "../DataStore";
-import '../styles/navbarStyle/navbar.css'
-import {  faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
-
+import "../styles/navbarStyle/navbar.css";
+import { faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const [currentSearch, setCurrentSearch] = useState("");
-  const { selectedEvent, searchState, setSearchState, } = useContext(DataStore);
+  const [ currentSearch, setCurrentSearch ] = useState("");
+  const { selectedEvent, setSearchState } =
+    useContext(DataStore);
   const navigate = useNavigate();
   const submitHandle = (e) => {
-    console.log('searchState',searchState)
     e.preventDefault();
-    setSearchState(currentSearch)
-    setCurrentSearch("")
-    navigate('/search')
-    } 
+    setSearchState(currentSearch);
+    setCurrentSearch("");
+    navigate("/search");
+  };
 
 
   return (
     <div>
-      <nav className="navbar navbar-expand bg-light">
-        <div className="container">
+      <nav className="navbar navbar-expand bg-light fixed">
+        <div className="container ">
           <Link className="navbar-brand" to="/" preventScrollReset={true}>
-           <FontAwesomeIcon className="home" icon={ faHouse }  />   
+            <FontAwesomeIcon className="home-icon" icon={faHouse} />
           </Link>
 
-          <form className="d-flex"  onSubmit={submitHandle} >
+          <form className="d-flex" onSubmit={submitHandle}>
             <input
               className="form-control me-2 rounded-pill border-0 shadow-sm px-4"
               value={currentSearch}
               placeholder="Search"
               aria-label="Search"
-              onChange={(e) =>{ setCurrentSearch(e.target.value) }}
+              onChange={(e) => {
+                setCurrentSearch(e.target.value);
+              }}
             />
-            
-            <button className="btn btn-outline-success rounded-pill" type="submit">
+
+            <button
+              className="src-btn rounded-pill"
+              type="submit"
+            >
               Search
             </button>
-            
           </form>
 
-          <Link className="nav-link cart" to="/events" preventScrollReset={true}>
-                <FontAwesomeIcon className="eventicon" icon={ faCalendarDays} />
+          <Link
+            className="nav-link cart"
+            to="/events"
+            preventScrollReset={true}
+          >
+            <FontAwesomeIcon className="event-icon" icon={faCalendarDays} />
             <span>
               {selectedEvent.length > 0 ? (
-                  <span className="badge rounded-pill bg-success bdg">
+                <span className="badge rounded-pill bg-primary bdg">
                   {selectedEvent.length}
                 </span>
               ) : null}
