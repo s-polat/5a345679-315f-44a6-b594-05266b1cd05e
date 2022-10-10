@@ -20,11 +20,11 @@ This is a DCI end of chapter project and a teamwork with Github.
 ![alt text](src/assets/gifs/desktop.gif)
 
 ### Tablet
-![alt text](src/image/gifs/tablet.gif)
+![alt text](src/assets/gifs/tablet.gif)
 
 ### Mobile
 
-![alt text](src/image/gifs/mobile.gif)
+![alt text](src/assets/gifs/mobile.gif)
 
 ## Technologies
 
