@@ -17,7 +17,7 @@ This is a DCI end of chapter project and a teamwork with Github.
 
 ### Desktop
 
-![alt text](src/assests/gifs/desktop.gif)
+![alt text](src/assets/gifs/desktop.gif)
 
 ### Tablet
 ![alt text](src/image/gifs/tablet.gif)
