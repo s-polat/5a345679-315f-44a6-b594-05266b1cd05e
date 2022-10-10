@@ -22,9 +22,9 @@ function SearchedEventsPage() {
   };
   return (
     <div>
-      <div>
+      <div className='search-page'>
         {searchedEvents?.length === 0 ? (
-          <div className="container row-12  d-flex align-items-center justify-content-center shadow my-5" >
+          <div className="container row-12  d-flex align-items-center justify-content-center shadow" >
             <div className="col-lg-3"><img src={dog} className="dog" alt="dog" /></div>
             <div className="col-5 dogText"><h2 >Ooo what a pity... <br /> The event was not found</h2></div>
           </div>

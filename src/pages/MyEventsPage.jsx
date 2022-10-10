@@ -17,10 +17,10 @@ function MyEventsPage() {
 
 
   return (
-    <div className="d-flex flex-wrap justify-content-center align-items-center">
+    <div className="d-flex flex-wrap justify-content-center align-items-center my-event">
       {selectedEvent.length > 0 ? selectedEvent.map((event) => {
         return (
-          <div key={event._id}>
+          <div key={event._id} >
             <Card
               
               id={event._id}
@@ -36,7 +36,7 @@ function MyEventsPage() {
           </div>
         );
       } ) : 
-        <div className="d-flex justify-content-center align-items-center no-content">
+        <div className="d-flex justify-content-center align-items-center shadow no-content">
             <h1>There is no event in your list</h1>
         </div>
       }

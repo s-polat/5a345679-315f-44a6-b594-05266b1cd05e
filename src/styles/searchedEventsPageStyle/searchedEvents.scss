@@ -1,6 +1,11 @@
+.search-page{
+  margin-top: 150px;
+}
+
 .dog{
     height: 400px;
 }
+
 
 @media only screen and (max-width: 992px) {
     .dog {
@@ -15,7 +20,7 @@
 }
 
 @media only screen and (max-width: 490px) {
-    .dog {
+     .dog {
       height: 250px;
     }
     .dogText {

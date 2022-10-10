@@ -10,7 +10,7 @@ function DateAndCountryBar() {
 
   useEffect(() => {
     const newCountry = countries.filter(
-      (country) => country.name.toLowerCase() === currentCountry.toLowerCase()
+      (country) => country.city.toLowerCase() === currentCountry.toLowerCase()
     );
 
     setCountry(newCountry);
@@ -26,11 +26,11 @@ function DateAndCountryBar() {
           onChange={(e) => setCurrentCountry(e.target.value.toLowerCase())}
         >
           <option selected disabled value="default">
-            United Kingdom
+            Select City...
           </option>
           {countries.map((country) => (
-            <option key={country.name} value={country.name}>
-              {country.name}
+            <option key={country.name} value={country.city}>
+              {country.city}
             </option>
           ))}
         </select>
@@ -41,6 +41,8 @@ function DateAndCountryBar() {
           alt="flags"
           className="rounded-pill ms-2 "
         />
+
+        <span></span>
       </div>
     </div>
   );
