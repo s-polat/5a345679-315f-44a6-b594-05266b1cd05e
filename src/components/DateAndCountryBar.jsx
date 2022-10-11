@@ -12,7 +12,6 @@ function DateAndCountryBar() {
     const newCountry = countries.filter(
       (country) => country.city.toLowerCase() === currentCountry.toLowerCase()
     );
-
     setCountry(newCountry);
   }, [currentCountry, setCountry]);
 
