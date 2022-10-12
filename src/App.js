@@ -15,7 +15,7 @@ function App() {
     { name: "United Kingdom", code: "GB", city: "london" },
   ]);
   const [countryCode, setCountryCode] = useState("uk");
-  const [dates, setDates] = useState([]);
+  //const [dates, setDates] = useState([]);
 
   function custom_sort(a, b) {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
@@ -39,14 +39,14 @@ function App() {
     getEvents();
   }, [country, countryCode]);
 
-  useEffect(() => {
+ /*  useEffect(() => {
     events.map((event) =>
       setDates((dates) => [
         ...dates,
         new Date(event.date.split("T")[0]).toDateString(),
       ])
     );
-  }, [events]);
+  }, [events]); */
 
   return (
     <DataStore.Provider
@@ -59,7 +59,7 @@ function App() {
         setSearchState,
         searchedEvents,
         country,
-        setCountry,
+        setCountry
       }}
     >
       <div>

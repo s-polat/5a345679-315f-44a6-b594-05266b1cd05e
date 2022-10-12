@@ -5,7 +5,6 @@ import { DataStore } from "../DataStore";
 import "../styles/navbarStyle/navbar.css";
 
 function DateAndCountryBar() {
-  
   const { country, setCountry } = useContext(DataStore);
   const [currentCountry, setCurrentCountry] = useState("");
 
@@ -17,7 +16,7 @@ function DateAndCountryBar() {
   }, [currentCountry, setCountry]);
 
   return (
-    <div className="container-fluid bg-light date-fixed" id='observe-root-item'>
+    <div className="container-fluid bg-light date-fixed" id="observe-root-item">
       <div className="d-flex justify-content-center">
         <select
           className="form-select rounded-pill"

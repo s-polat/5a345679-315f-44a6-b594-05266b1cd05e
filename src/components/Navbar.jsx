@@ -7,17 +7,15 @@ import "../styles/navbarStyle/navbar.css";
 import { faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const [ currentSearch, setCurrentSearch ] = useState("");
-  const { selectedEvent, setSearchState } =
-    useContext(DataStore);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const { selectedEvent, setSearchState } = useContext(DataStore);
   const navigate = useNavigate();
   const submitHandle = (e) => {
     e.preventDefault();
     setSearchState(currentSearch);
     setCurrentSearch("");
-   // navigate("/search");
+    // navigate("/search");
   };
-
 
   return (
     <div>
@@ -38,10 +36,7 @@ function Navbar() {
               }}
             />
 
-            <button
-              className="src-btn rounded-pill"
-              type="submit"
-            >
+            <button className="src-btn rounded-pill" type="submit">
               Search
             </button>
           </form>

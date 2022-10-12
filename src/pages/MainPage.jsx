@@ -45,23 +45,10 @@ function MainPage() {
 
   return (
     <div className="container">
-      <div className="sticky-date">
-        {stickyDate}
-      </div>
+      <div className="sticky-date">{stickyDate}</div>
       <div className="d-flex flex-wrap justify-content-center align-items-center">
         <div className="search-page">
-          {searchedEvents?.length === 0 ? (
-            <div className="container row-12  d-flex align-items-center justify-content-center shadow">
-              <div className="col-lg-3">
-                <img src={dog} className="dog" alt="dog" />
-              </div>
-              <div className="col-5 dogText">
-                <h2>
-                  Ooo what a pity... <br /> The event was not found
-                </h2>
-              </div>
-            </div>
-          ) : (
+          {searchedEvents?.length > 0 ? (
             <div className="container d-flex flex-row flex-wrap justify-content-center">
               {searchedEvents?.map((event) => {
                 return (
@@ -87,6 +74,17 @@ function MainPage() {
                   </div>
                 );
               })}
+            </div>
+          ) : (
+            <div className="container row-12  d-flex align-items-center justify-content-center shadow">
+              <div className="col-lg-3">
+                <img src={dog} className="dog" alt="dog" />
+              </div>
+              <div className="col-5 dogText">
+                <h2>
+                  Ooo what a pity... <br /> The event was not found
+                </h2>
+              </div>
             </div>
           )}
         </div>

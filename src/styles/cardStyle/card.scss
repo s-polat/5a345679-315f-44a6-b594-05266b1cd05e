@@ -1,15 +1,14 @@
-.card-style{
-    border-radius: 14px;
-    border: none;
-    margin-top: 100px;
-    background: linear-gradient(145deg, #cacaca, #f0f0f0);
-    transition: box-shadow 0.3s ease-out;
-    box-shadow: 15px 15px 30px #bebebe,
-             -15px -15px 30px #ffffff;
-    &:hover {
-      box-shadow: 3px 3px 30px  rgba(92, 81, 125, 0.524);
-    }
+.card-style {
+  border-radius: 14px;
+  border: none;
+  margin-top: 100px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  transition: box-shadow 0.3s ease-out;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  &:hover {
+    box-shadow: 3px 3px 30px rgba(92, 81, 125, 0.524);
   }
+}
 
 .img_wrap {
   position: relative;
@@ -42,7 +41,7 @@
   backdrop-filter: blur(5px);
 }
 
-.card-btn{
-  background-color: #9e02ff96;;
+.card-btn {
+  background-color: #9e02ff96;
   border: 1px solid #c775fa96;
 }
