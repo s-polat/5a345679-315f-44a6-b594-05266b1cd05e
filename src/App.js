@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import { DataStore } from "./DataStore";
 import MainPage from "./pages/MainPage";
 import MyEventsPage from "./pages/MyEventsPage";
-import SearchedEventsPage from "./pages/SearchedEventsPage";
 import DateAndCountryBar from "./components/DateAndCountryBar";
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
   const searchedEvents = events.filter(
     (ev) => ev.title.toLowerCase().indexOf(searchState.toLowerCase()) !== -1
   );
-  console.log(searchedEvents);
 
   useEffect(() => {
     getEvents();
@@ -70,7 +68,6 @@ function App() {
         <Routes>
           <Route path="/" exact element={<MainPage />} />
           <Route path="/events" exact element={<MyEventsPage />} />
-          <Route path="/search" exact element={<SearchedEventsPage />} />
         </Routes>
       </div>
     </DataStore.Provider>

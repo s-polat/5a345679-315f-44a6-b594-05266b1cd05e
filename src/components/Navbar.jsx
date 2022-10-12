@@ -15,7 +15,7 @@ function Navbar() {
     e.preventDefault();
     setSearchState(currentSearch);
     setCurrentSearch("");
-    navigate("/search");
+   // navigate("/search");
   };
 
 
