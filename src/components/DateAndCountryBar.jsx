@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import countries from "../assets/countries/countries";
 import { DataStore } from "../DataStore";
@@ -6,14 +6,13 @@ import "../styles/navbarStyle/navbar.css";
 
 function DateAndCountryBar() {
   const { country, setCountry } = useContext(DataStore);
-  const [currentCountry, setCurrentCountry] = useState("");
-
-  useEffect(() => {
-    const newCountry = countries.filter(
-      (country) => country.city.toLowerCase() === currentCountry.toLowerCase()
+  const handleCountry = (e) => {
+    const newCountry = e.target.value;
+    const countryObj = countries.filter(
+      (c) => c.city.toLowerCase() === newCountry.toLowerCase()
     );
-    setCountry(newCountry);
-  }, [currentCountry, setCountry]);
+    setCountry(countryObj);
+  };
 
   return (
     <div className="container-fluid bg-light date-fixed" id="observe-root-item">
@@ -22,7 +21,7 @@ function DateAndCountryBar() {
           className="form-select rounded-pill"
           aria-label="Default select example"
           style={{ width: "13rem" }}
-          onChange={(e) => setCurrentCountry(e.target.value.toLowerCase())}
+          onChange={handleCountry}
         >
           <option selected disabled value="default">
             Select City...
@@ -35,13 +34,11 @@ function DateAndCountryBar() {
         </select>
         <img
           src={`https://flagcdn.com/w40/${
-            country[0]?.code.toLowerCase() || "gb"
+            country[0]?.code.toLowerCase() === "de" ? "de" : "gb"
           }.jpg`}
           alt="flags"
           className="rounded-pill ms-2 "
         />
-
-        <span></span>
       </div>
     </div>
   );

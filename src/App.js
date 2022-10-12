@@ -11,24 +11,31 @@ function App() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState([]);
   const [searchState, setSearchState] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [country, setCountry] = useState([
-    { name: "United Kingdom", code: "GB", city: "london" },
+    { name: "United Kingdom", code: "UK", city: "london" },
   ]);
-  const [countryCode, setCountryCode] = useState("uk");
-  //const [dates, setDates] = useState([]);
+
 
   function custom_sort(a, b) {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   }
 
   const getEvents = async () => {
-    setCountryCode(country[0].code === "GB" ? "UK" : country[0].code);
-    const URL = `https://tlv-events-app.herokuapp.com/events/${countryCode.toLowerCase()}/${country[0].city.toLowerCase()}`;
-    const result = await fetch(URL)
-      .then((data) => data.json())
-      .then((data) => data.sort(custom_sort));
-
-    setEvents(result);
+    try {
+      setIsLoading(true);
+      //setCountryCode(country[0].code === "GB" ? "UK" : country[0].code);
+      const countryCode = country[0]?.code.toLowerCase() === "de" ? "de" : "uk";
+      const URL = `https://tlv-events-app.herokuapp.com/events/${countryCode}/${country[0].city.toLowerCase()}`;
+      const result = await fetch(URL)
+        .then((data) => data.json())
+        .then((data) => data.sort(custom_sort));
+      setEvents(result);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
   };
 
   const searchedEvents = events.filter(
@@ -37,16 +44,7 @@ function App() {
 
   useEffect(() => {
     getEvents();
-  }, [country, countryCode]);
-
- /*  useEffect(() => {
-    events.map((event) =>
-      setDates((dates) => [
-        ...dates,
-        new Date(event.date.split("T")[0]).toDateString(),
-      ])
-    );
-  }, [events]); */
+  }, [country]);
 
   return (
     <DataStore.Provider
@@ -59,7 +57,8 @@ function App() {
         setSearchState,
         searchedEvents,
         country,
-        setCountry
+        setCountry,
+        isLoading,
       }}
     >
       <div>

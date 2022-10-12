@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DataStore } from "../DataStore";
 import "../styles/navbarStyle/navbar.css";
 import { faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
@@ -9,19 +9,17 @@ import { faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
 function Navbar() {
   const [currentSearch, setCurrentSearch] = useState("");
   const { selectedEvent, setSearchState } = useContext(DataStore);
-  const navigate = useNavigate();
   const submitHandle = (e) => {
     e.preventDefault();
     setSearchState(currentSearch);
     setCurrentSearch("");
-    // navigate("/search");
   };
 
   return (
     <div>
       <nav className="navbar navbar-expand bg-light fixed">
         <div className="container ">
-          <Link className="navbar-brand" to="/" preventScrollReset={true}>
+          <Link className="navbar-brand" to="/">
             <FontAwesomeIcon className="home-icon" icon={faHouse} />
           </Link>
 
@@ -35,7 +33,6 @@ function Navbar() {
                 setCurrentSearch(e.target.value);
               }}
             />
-
             <button className="src-btn rounded-pill" type="submit">
               Search
             </button>

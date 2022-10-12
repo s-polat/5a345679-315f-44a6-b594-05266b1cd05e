@@ -8,10 +8,15 @@ import dog from "../assets/images/dog.jpg";
 import "../styles/mainPageStyle/mainPage.css";
 
 function MainPage() {
-  const { events, setEvents, selectedEvent, setSelectedEvent, searchedEvents } =
-    useContext(DataStore);
+  const {
+    events,
+    setEvents,
+    selectedEvent,
+    setSelectedEvent,
+    searchedEvents,
+    isLoading,
+  } = useContext(DataStore);
   const [stickyDate, setStickyDate] = useState("");
-  console.log("stickyDate", stickyDate);
   const clickHandle = (event) => {
     events.filter(
       (ev) =>
@@ -21,74 +26,84 @@ function MainPage() {
     setEvents(newEvents);
   };
   let date;
-
+  
   useEffect(() => {
     let threshold = 1;
     let options = { threshold };
     let targets = document?.querySelectorAll(".observe-item");
-    let callback = (entries) => {
-      for (const entry of entries) {
-        setStickyDate(entry.target.getAttribute("date"));
-        setStickyDate((stickyDate) =>
-          stickyDate.length > 0
-            ? new Date(stickyDate.split("T")[0]).toDateString()
-            : null
-        );
-      }
-    };
-    let observer = new IntersectionObserver(callback, options);
-    targets.forEach((item) => observer.observe(item));
+    let observer;
+    if (searchedEvents.length > 0) {
+      let callback = (entries) => {
+        for (const entry of entries) {
+          setStickyDate(entry.target.getAttribute("date"));
+          setStickyDate((stickyDate) =>
+            stickyDate.length > 0
+              ? new Date(stickyDate.split("T")[0]).toDateString()
+              : null
+          );
+        }
+      };
+      observer = new IntersectionObserver(callback, options);
+      Array.from(targets)
+        .reverse()
+        .forEach((item) => observer.observe(item));
+    }
     return () => {
       targets.forEach((item) => observer.unobserve(item));
     };
-  }, []);
-
+  }, [searchedEvents]);
   return (
     <div className="container">
-      <div className="sticky-date">{stickyDate}</div>
-      <div className="d-flex flex-wrap justify-content-center align-items-center">
-        <div className="search-page">
-          {searchedEvents?.length > 0 ? (
-            <div className="container d-flex flex-row flex-wrap justify-content-center">
-              {searchedEvents?.map((event) => {
-                return (
-                  <div
-                    key={event._id}
-                    className={date !== event.date ? "observe-item" : ""}
-                    date={event.date}
-                  >
-                    <script>
-                      if( date !== event.date) {(date = event.date)}
-                    </script>
-                    <Card
-                      id={event._id}
-                      eventImg={event?.flyerFront}
-                      title={event.title}
-                      location={event.venue.direction}
-                      locationName={event.venue.name}
-                      startTime={event.startTime}
-                      endTime={event.endTime}
-                      onClick={() => clickHandle(event)}
-                      buttonSymbol={<FontAwesomeIcon icon={faPlus} />}
-                    />
+      {isLoading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <>
+          <div className="sticky-date">{searchedEvents.length > 0 && stickyDate}</div>
+          <div className="d-flex flex-wrap justify-content-center align-items-center">
+            <div className="search-page">
+              {searchedEvents?.length === 0 ? (
+                <div className="container row-12  d-flex align-items-center justify-content-center shadow">
+                  <div className="col-lg-3">
+                    <img src={dog} className="dog" alt="dog" />
                   </div>
-                );
-              })}
+                  <div className="col-5 dogText">
+                    <h2>
+                      Ooo what a pity... <br /> The event was not found
+                    </h2>
+                  </div>
+                </div>
+              ) : (
+                <div className="container d-flex flex-row flex-wrap justify-content-center">
+                  {searchedEvents?.map((event) => {
+                    return (
+                      <div
+                        key={event._id}
+                        className={date !== event.date ? "observe-item" : ""}
+                        date={event.date}
+                      >
+                        <script>
+                          if( date !== event.date) {(date = event.date)}
+                        </script>
+                        <Card
+                          id={event._id}
+                          eventImg={event?.flyerFront}
+                          title={event.title}
+                          location={event.venue.direction}
+                          locationName={event.venue.name}
+                          startTime={event.startTime}
+                          endTime={event.endTime}
+                          onClick={() => clickHandle(event)}
+                          buttonSymbol={<FontAwesomeIcon icon={faPlus} />}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="container row-12  d-flex align-items-center justify-content-center shadow">
-              <div className="col-lg-3">
-                <img src={dog} className="dog" alt="dog" />
-              </div>
-              <div className="col-5 dogText">
-                <h2>
-                  Ooo what a pity... <br /> The event was not found
-                </h2>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
