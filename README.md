@@ -1,6 +1,6 @@
 ## An Event App
 
-<a href="https://polatevents.netlify.app/" target="_blank"><h3 align="left">Click here for demo</h3></a>
+[Click here for the app](https://polatevents.netlify.app/)
 
 ## Table of Contents
 
