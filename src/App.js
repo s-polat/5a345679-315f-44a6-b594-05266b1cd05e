@@ -16,7 +16,6 @@ function App() {
     { name: "United Kingdom", code: "UK", city: "london" },
   ]);
 
-
   function custom_sort(a, b) {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   }

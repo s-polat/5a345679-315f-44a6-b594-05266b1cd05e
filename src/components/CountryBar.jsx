@@ -20,7 +20,7 @@ function CountryBar() {
         <select
           className="form-select rounded-pill"
           aria-label="Default select example"
-          defaultValue={'DEFAULT'}
+          defaultValue={"DEFAULT"}
           style={{ width: "13rem" }}
           onChange={handleCountry}
         >

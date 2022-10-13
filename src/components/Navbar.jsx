@@ -12,18 +12,16 @@ function Navbar() {
   const navigate = useNavigate();
 
   const submitHandle = (e) => {
-    navigate('/');
+    navigate("/");
     e.preventDefault();
     setSearchState(currentSearch);
     setCurrentSearch("");
   };
 
   const clickHandle = (e) => {
-   console.log(e);
-   setCurrentSearch("");
-   setSearchState(currentSearch);
-
-  }
+    setCurrentSearch("");
+    setSearchState(currentSearch);
+  };
 
   return (
     <div>
@@ -32,7 +30,6 @@ function Navbar() {
           <Link className="navbar-brand" to="/" onClick={clickHandle}>
             <FontAwesomeIcon className="home-icon" icon={faHouse} />
           </Link>
-          
 
           <form className="d-flex" onSubmit={submitHandle}>
             <input

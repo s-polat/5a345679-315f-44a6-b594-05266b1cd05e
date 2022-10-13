@@ -18,6 +18,7 @@ function MainPage() {
     isLoading,
   } = useContext(DataStore);
   const [stickyDate, setStickyDate] = useState("");
+
   const clickHandle = (event) => {
     events.filter(
       (ev) =>
@@ -27,7 +28,7 @@ function MainPage() {
     setEvents(newEvents);
   };
   let date;
-  
+
   useEffect(() => {
     let threshold = 1;
     let options = { threshold };
@@ -56,10 +57,14 @@ function MainPage() {
   return (
     <div className="container">
       {isLoading ? (
-        <div className="loading"><Loader/></div>
+        <div className="loading">
+          <Loader />
+        </div>
       ) : (
         <>
-          <div className="sticky-date">{searchedEvents.length > 0 && stickyDate}</div>
+          <div className="sticky-date">
+            {searchedEvents.length > 0 && stickyDate}
+          </div>
           <div className="d-flex flex-wrap justify-content-center align-items-center">
             <div className="search-page">
               {searchedEvents?.length === 0 ? (
