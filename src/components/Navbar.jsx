@@ -1,27 +1,38 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DataStore } from "../DataStore";
 import "../styles/navbarStyle/navbar.css";
 import { faCalendarDays, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const [currentSearch, setCurrentSearch] = useState("");
   const { selectedEvent, setSearchState } = useContext(DataStore);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const navigate = useNavigate();
+
   const submitHandle = (e) => {
+    navigate('/');
     e.preventDefault();
     setSearchState(currentSearch);
     setCurrentSearch("");
   };
 
+  const clickHandle = (e) => {
+   console.log(e);
+   setCurrentSearch("");
+   setSearchState(currentSearch);
+
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand bg-light fixed">
         <div className="container ">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/" onClick={clickHandle}>
             <FontAwesomeIcon className="home-icon" icon={faHouse} />
           </Link>
+          
 
           <form className="d-flex" onSubmit={submitHandle}>
             <input

@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import { DataStore } from "../DataStore";
 import dog from "../assets/images/dog.jpg";
 import "../styles/mainPageStyle/mainPage.css";
+import Loader from "../components/Loader";
 
 function MainPage() {
   const {
@@ -55,7 +56,7 @@ function MainPage() {
   return (
     <div className="container">
       {isLoading ? (
-        <div className="loading">Loading...</div>
+        <div className="loading"><Loader/></div>
       ) : (
         <>
           <div className="sticky-date">{searchedEvents.length > 0 && stickyDate}</div>

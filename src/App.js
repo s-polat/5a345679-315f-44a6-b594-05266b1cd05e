@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import { DataStore } from "./DataStore";
 import MainPage from "./pages/MainPage";
 import MyEventsPage from "./pages/MyEventsPage";
-import DateAndCountryBar from "./components/DateAndCountryBar";
+import CountryBar from "./components/CountryBar";
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -24,7 +24,6 @@ function App() {
   const getEvents = async () => {
     try {
       setIsLoading(true);
-      //setCountryCode(country[0].code === "GB" ? "UK" : country[0].code);
       const countryCode = country[0]?.code.toLowerCase() === "de" ? "de" : "uk";
       const URL = `https://tlv-events-app.herokuapp.com/events/${countryCode}/${country[0].city.toLowerCase()}`;
       const result = await fetch(URL)
@@ -63,7 +62,7 @@ function App() {
     >
       <div>
         <Navbar />
-        <DateAndCountryBar />
+        <CountryBar />
         <Routes>
           <Route path="/" exact element={<MainPage />} />
           <Route path="/events" exact element={<MyEventsPage />} />
