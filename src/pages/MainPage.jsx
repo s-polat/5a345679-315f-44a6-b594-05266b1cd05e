@@ -22,9 +22,9 @@ function MainPage() {
   const clickHandle = (event) => {
     events.filter(
       (ev) =>
-        ev._id === event._id && setSelectedEvent([...selectedEvent, event])
+        ev.id === event.id && setSelectedEvent([...selectedEvent, event])
     );
-    const newEvents = events.filter((ev) => ev._id !== event._id);
+    const newEvents = events.filter((ev) => ev.id !== event.id);
     setEvents(newEvents);
   };
   let date;
@@ -83,7 +83,7 @@ function MainPage() {
                   {searchedEvents?.map((event) => {
                     return (
                       <div
-                        key={event._id}
+                        key={event.id}
                         className={date !== event.date ? "observe-item" : ""}
                         date={event.date}
                       >
@@ -91,13 +91,13 @@ function MainPage() {
                           if( date !== event.date) {(date = event.date)}
                         </script>
                         <Card
-                          id={event._id}
-                          eventImg={event?.flyerFront}
-                          title={event.title}
-                          location={event.venue.direction}
-                          locationName={event.venue.name}
-                          startTime={event.startTime}
-                          endTime={event.endTime}
+                          id={event.id}
+                          eventImg={event?.images[0]?.url}
+                          title={event.name}
+                          location={event._embedded.venues[0].name}
+                          locationName={event._embedded.venues[0].name}
+                          startTime={event.dates.start.localTime}
+                          startDate={event.dates.start.localDate}
                           onClick={() => clickHandle(event)}
                           buttonSymbol={<FontAwesomeIcon icon={faPlus} />}
                         />

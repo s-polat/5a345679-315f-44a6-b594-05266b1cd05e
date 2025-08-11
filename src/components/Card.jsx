@@ -12,18 +12,17 @@ function Card({
   location,
   locationName,
   startTime,
-  endTime,
+  startDate,
   onClick,
   buttonSymbol,
 }) {
-  const pureStartDate = startTime
+  
+  const pureStartTime = startTime
     ?.split("T")[0]
     ?.split("-")
     .reverse()
     .join(".");
-  const pureStartTime = startTime?.split("T")[1].split(".")[0];
-  const pureEndDate = endTime?.split("T")[0]?.split("-").reverse().join(".");
-  const pureEndTime = endTime?.split("T")[1].split(".")[0];
+  const pureStartDate = startDate
 
   return (
     <div
@@ -68,14 +67,10 @@ function Card({
           </a>
         </div>
         <p>
-          {`Starts: ${pureStartDate ? pureStartDate : ""} ${
-            pureStartTime || "Not specified"
-          }`}
+          {`Date: ${pureStartDate ? pureStartDate : ""}`}
         </p>
         <p>
-          {`Ends: ${pureEndDate ? pureEndDate : ""}  ${
-            pureEndTime || "Not specified"
-          }`}
+          {`Time: ${pureStartTime ? pureStartTime : ""} `}
         </p>
         <div className="d-flex justify-content-end">
           <button

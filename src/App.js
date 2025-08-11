@@ -8,6 +8,7 @@ import MyEventsPage from "./pages/MyEventsPage";
 import CountryBar from "./components/CountryBar";
 
 function App() {
+  const apiKey = "6UazPanKfbd28FBWsT7Eq70JQGyTlY1S";
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState([]);
   const [searchState, setSearchState] = useState("");
@@ -24,10 +25,11 @@ function App() {
     try {
       setIsLoading(true);
       const countryCode = country[0]?.code.toLowerCase() === "de" ? "de" : "uk";
-      const URL = `https://tlv-events-app.herokuapp.com/events/${countryCode}/${country[0].city.toLowerCase()}`;
+      const URL = `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=${countryCode}&city=${country[0].city}&apikey=${apiKey}`;
       const result = await fetch(URL)
         .then((data) => data.json())
-        .then((data) => data.sort(custom_sort));
+        .then((data) => data._embedded.events);
+          
       setEvents(result);
       setIsLoading(false);
     } catch (error) {
@@ -37,9 +39,8 @@ function App() {
   };
 
   const searchedEvents = events.filter(
-    (ev) => ev.title.toLowerCase().indexOf(searchState.toLowerCase()) !== -1
+    (ev) => ev.name.toLowerCase().indexOf(searchState.toLowerCase()) !== -1
   );
-
   useEffect(() => {
     getEvents();
   }, [country]);
