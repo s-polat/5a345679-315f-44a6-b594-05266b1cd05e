@@ -2,15 +2,16 @@ import React from "react";
 import "../styles/cardStyle/card.css";
 import defaultEventImg from "./../assets/images/default_event_img.jpg";
 import profileFoto from "./../assets/images/profile_foto.jpeg";
+import { faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { height } from "@fortawesome/free-regular-svg-icons/faAddressBook";
 
 function Card({
   id,
   title,
   eventImg,
-  location,
-  locationName,
+  ticketUrl,
+  address,
   startTime,
   startDate,
   onClick,
@@ -57,15 +58,21 @@ function Card({
       <div className="card-body" style={{ width: "100%" }}>
         <div className="mb-3">
           <a
-            href={location}
+            href={ticketUrl}
             className="text-decoration-none"
             target="_blank"
             rel="noreferrer"
           >
-            <FontAwesomeIcon icon={faLocationDot} />
-            <span className="ms-2">{locationName}</span>
+            <FontAwesomeIcon icon={faStore} />
+            <span className="ms-2">Ticket</span>
           </a>
         </div>
+       <p className="address" style={{ cursor: address && address.length > 25 ? "pointer" : "default"
+  }}
+  title={address}
+>
+  {`Address: ${address ? (address.length > 20 ? address.slice(0, 20) + "..." : address) : "No Info"}`}
+</p>
         <p>
           {`Date: ${pureStartDate ? pureStartDate : ""}`}
         </p>

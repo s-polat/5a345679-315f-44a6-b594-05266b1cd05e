@@ -29,31 +29,32 @@ function MainPage() {
   };
   let date;
 
-  useEffect(() => {
-    let threshold = 1;
-    let options = { threshold };
-    let targets = document?.querySelectorAll(".observe-item");
-    let observer;
-    if (searchedEvents.length > 0) {
-      let callback = (entries) => {
-        for (const entry of entries) {
-          setStickyDate(entry.target.getAttribute("date"));
-          setStickyDate((stickyDate) =>
-            stickyDate.length > 0
-              ? new Date(stickyDate.split("T")[0]).toDateString()
-              : null
-          );
+ useEffect(() => {
+  let threshold = 1;
+  let options = { threshold };
+  let targets = document?.querySelectorAll(".observe-item");
+  
+  let observer;
+  if (searchedEvents.length > 0) {
+    let callback = (entries) => {
+      // Sadece ekranda görünen (isIntersecting) ilk entry'yi bul
+      const visibleEntry = entries.find(entry => entry.isIntersecting);
+      if (visibleEntry) {
+        const dateAttr = visibleEntry.target.getAttribute("date");
+        if (dateAttr) {
+          setStickyDate(new Date(dateAttr.split("T")[0]).toDateString());
         }
-      };
-      observer = new IntersectionObserver(callback, options);
-      Array.from(targets)
-        .reverse()
-        .forEach((item) => observer.observe(item));
-    }
-    return () => {
-      targets.forEach((item) => observer.unobserve(item));
+      }
     };
-  }, [searchedEvents]);
+    observer = new IntersectionObserver(callback, options);
+    Array.from(targets)
+      .reverse()
+      .forEach((item) => observer.observe(item));
+  }
+  return () => {
+    targets.forEach((item) => observer.unobserve(item));
+  };
+}, [searchedEvents]);
   return (
     <div className="container">
       {isLoading ? (
@@ -81,20 +82,22 @@ function MainPage() {
               ) : (
                 <div className="container d-flex flex-row flex-wrap justify-content-center">
                   {searchedEvents?.map((event) => {
+                    
                     return (
                       <div
                         key={event.id}
-                        className={date !== event.date ? "observe-item" : ""}
-                        date={event.date}
+                        className={date !== event.dates.start.localDate ? "observe-item" : ""}
+                        date={event.dates.start.localDate}
                       >
                         <script>
-                          if( date !== event.date) {(date = event.date)}
+                          if( date !== event.dates.start.localDate) {(date = event.dates.start.localDate)}
                         </script>
                         <Card
                           id={event.id}
                           eventImg={event?.images[0]?.url}
                           title={event.name}
-                          location={event._embedded.venues[0].name}
+                          ticketUrl={event.url}
+                          address={`${event._embedded.venues[0].address.line1} / ${event._embedded.venues[0].city.name}`}
                           locationName={event._embedded.venues[0].name}
                           startTime={event.dates.start.localTime}
                           startDate={event.dates.start.localDate}

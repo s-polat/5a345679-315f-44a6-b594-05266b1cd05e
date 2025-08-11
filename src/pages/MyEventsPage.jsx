@@ -11,9 +11,9 @@ function MyEventsPage() {
 
   const clickHandle = (event) => {
     selectedEvent.filter(
-      (ev) => ev._id === event._id && setEvents([...events, event])
+      (ev) => ev.id === event.id && setEvents([...events, event])
     );
-    const newSelectedEvent = selectedEvent.filter((ev) => ev._id !== event._id);
+    const newSelectedEvent = selectedEvent.filter((ev) => ev.id !== event.id);
     setSelectedEvent(newSelectedEvent);
   };
 
@@ -22,15 +22,16 @@ function MyEventsPage() {
       {selectedEvent.length > 0 ? (
         selectedEvent.map((event) => {
           return (
-            <div key={event._id}>
+            <div key={event.id}>
               <Card
-                id={event._id}
-                eventImg={event?.flyerFront}
-                title={event.title}
-                location={event.venue.direction}
-                locationName={event.venue.name}
-                startTime={event.startTime}
-                endTime={event.endTime}
+                id={event.id}
+                          eventImg={event?.images[0]?.url}
+                          title={event.name}
+                          ticketUrl={event.url}
+                          address={event._embedded.venues[0].address.line1}
+                          locationName={event._embedded.venues[0].name}
+                          startTime={event.dates.start.localTime}
+                          startDate={event.dates.start.localDate}
                 onClick={() => clickHandle(event)}
                 buttonSymbol={<FontAwesomeIcon icon={faMinus} />}
               />
