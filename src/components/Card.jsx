@@ -4,7 +4,6 @@ import defaultEventImg from "./../assets/images/default_event_img.jpg";
 import profileFoto from "./../assets/images/profile_foto.jpeg";
 import { faStore } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { height } from "@fortawesome/free-regular-svg-icons/faAddressBook";
 
 function Card({
   id,
